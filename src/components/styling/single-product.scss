@@ -1,0 +1,31 @@
+$select-width: 60%;
+$select-color: #555;
+$select-background-color: #f1f1f1;
+$select-border-color: #ccc;
+$select-border-radius: 4px;
+$select-padding: 5px;
+$select-focus-border-color: #aaa;
+$custom-arrow-color: #555;
+
+.custom-select {
+  width: $select-width;
+  color: $select-color;
+  padding: $select-padding;
+  border: 1px solid $select-border-color;
+  border-radius: $select-border-radius;
+  appearance: none; // Remove default arrow
+  background-color: $select-background-color;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="#{$custom-arrow-color}" d="M2 0L0 2h4zM2 5L0 3h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 10px 10px;
+
+  &:focus {
+    border-color: $select-focus-border-color;
+  }
+
+  option {
+    color: darken($select-color, 20%);
+    padding: $select-padding;
+  }
+}
