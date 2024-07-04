@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styling/checkout.scss";
-import { placeOrder } from "../redux/data/userData";
+import { placeOrder } from "../redux/data/UserData";
 import { useNavigate } from "react-router";
-import { clearCart } from "../redux/data/userData";
+import { clearCart } from "../redux/data/UserData";
 
 
 const CheckoutSection = () => {

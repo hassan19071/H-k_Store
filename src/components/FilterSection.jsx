@@ -10,7 +10,7 @@ import {
   changeColor,
   changeSize,
 } from "../redux/data/FilteringProducts";
-import { addToCart, addToWishlist } from "../redux/data/userData";
+import { addToCart, addToWishlist } from "../redux/data/UserData";
 const FilterSection = () => {
   let filteringProductss = useSelector(
     (state) => state.filter.filteringProducts

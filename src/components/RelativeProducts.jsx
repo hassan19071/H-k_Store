@@ -3,7 +3,7 @@ import { storeData } from "../assets/data/dummyData";
 import { useParams } from "react-router";
 import Product from "./ProductCard";
 import { useDispatch } from "react-redux";
-import { addToWishlist, addToCart } from "../redux/data/userData";
+import { addToWishlist, addToCart } from "../redux/data/UserData";
 
 const RelativeProducts = ()=>{
     let { id } = useParams();

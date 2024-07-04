@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import "./styling/wishlist.scss";
-import { removeFromWishlist, clearWishlist } from '../redux/data/userData';
+import { removeFromWishlist, clearWishlist } from '../redux/data/UserData';
 import { useNavigate } from 'react-router';
 
 const WishlistSection = () => {

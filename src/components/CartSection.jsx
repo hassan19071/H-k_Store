@@ -5,7 +5,7 @@ import {
   decreaseQuantity,
   removeFromCart,
   clearCart,
-} from "../redux/data/userData";
+} from "../redux/data/UserData";
 import { useNavigate } from "react-router";
 import "./styling/cart.scss";
 

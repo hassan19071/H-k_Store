@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import "./styling/dashboard.scss";
 import { loadUsers, saveUsers } from "../assets/data/dummyData"; // Adjust the import path as needed
 import toast, { Toaster } from "react-hot-toast";
-import { updateCurrentUser } from "../redux/data/userData";
+import { updateCurrentUser } from "../redux/data/UserData";
 
 const DashboardSection = () => {
   const user = useSelector((state) => state.user.currentUser); // Assuming you have a user state

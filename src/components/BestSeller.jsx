@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "./ProductCard";
 import { storeData } from "../assets/data/dummyData";
-import { addToCart,addToWishlist } from "../redux/data/userData";
+import { addToCart,addToWishlist } from "../redux/data/UserData";
 import { useDispatch } from "react-redux";
 
 const BestSeller = ()=>{

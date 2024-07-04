@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { filterById } from "../redux/data/FilteringProducts";
 import "./styling/single-product.scss";
-import { addToCart, addToWishlist } from "../redux/data/userData";
+import { addToCart, addToWishlist } from "../redux/data/UserData";
 
 const SingleProduct = () => {
   const { id } = useParams();
