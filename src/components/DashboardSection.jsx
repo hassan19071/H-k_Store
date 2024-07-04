@@ -144,7 +144,7 @@ const DashboardSection = () => {
                 <p>No items in Cart.</p>
               )}
             </div>
-            <form onSubmit={handleUpdate}>
+            <form onSubmit={handleUpdate} className="dashboard-form">
               <h1 style={{ fontSize: "24px" }}>Update your account</h1>
               <div className="row g-3 my-3">
                 <div className="col-lg-6 col-12">
