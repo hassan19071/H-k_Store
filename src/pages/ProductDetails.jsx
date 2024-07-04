@@ -3,6 +3,7 @@ import TopHeadMsg from "../components/TopHeadMsg";
 import Navbar from "../components/Navbar";
 import SingleProduct from "../components/SingleProduct";
 import Footer from "../components/Footer";
+import RelativeProducts from './../components/RelativeProducts';
 
 const ProductDetails = () => {
   return (
@@ -10,6 +11,7 @@ const ProductDetails = () => {
       <TopHeadMsg />
       <Navbar />
       <SingleProduct />
+      <RelativeProducts/>
       <Footer />
     </>
   );

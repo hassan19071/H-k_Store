@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styling/checkout.scss";
-import { placeOrder } from "../redux/data/OrderSettings";
+import { placeOrder } from "../redux/data/userData";
 import { useNavigate } from "react-router";
-import { clearCart } from "../redux/data/CartSettings";
+import { clearCart } from "../redux/data/userData";
 
 
 const CheckoutSection = () => {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
-  let subtotal = cart.reduce(
+  const cart = useSelector((state) => state.user.currentUser);
+  let subtotal = cart?.cart.reduce(
     (acc, item) => acc + item.quantity * item.price,
     0
   );
@@ -41,7 +41,7 @@ const CheckoutSection = () => {
       placeOrder({
         cartItems: cart,
         shippingInfo,
-        total: cart.reduce((acc, item) => acc + item.quantity * item.price, 0),
+        total: cart?.cart.reduce((acc, item) => acc + item.quantity * item.price, 0),
       })
     );
     setTimeout(()=>{
@@ -50,13 +50,20 @@ const CheckoutSection = () => {
     },2000)
   };
 
+  useEffect(()=>{
+    if (!cart){
+        navigate("/login")
+    }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[cart, navigate])
+
   return (
     <div className="checkout py-5">
       <div className="container px-lg-5">
         <h1 className="checkout-title">Checkout</h1>
         <div className="checkout-details">
           <h2 className="mb-4">Order Summary</h2>
-          {cart.length === 0 ? (
+          {cart?.cart.length === 0 ? (
             <div className="alert alert-danger text-center my-5" role="alert">
               Your cart is empty!
             </div>
@@ -73,7 +80,7 @@ const CheckoutSection = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.map((item) => (
+                  {cart?.cart.map((item) => (
                     <tr key={item.id}>
                       <td>
                         <img src={item.img} alt={item.name} width="60px" />

@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
   increaseQuantity,
   decreaseQuantity,
   removeFromCart,
   clearCart,
-} from "../redux/data/CartSettings";
+} from "../redux/data/userData";
 import { useNavigate } from "react-router";
 import "./styling/cart.scss";
 
 const CartSection = () => {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
+  let user = useSelector((state) => state.user.currentUser);
   let total = 0;
   let navigate = useNavigate();
 
-  for (let i = 0; i < cart.length; i++) {
-    total += cart[i].quantity * cart[i].price;
+  for (let i = 0; i < user?.cart.length; i++) {
+    total += user?.cart[i].quantity * user?.cart[i].price;
   }
 
   const handleIncreaseQuantity = (product) => {
@@ -39,13 +39,19 @@ const CartSection = () => {
     navigate("/checkout");
   }
 
+  useEffect(()=>{
+    if (!user){
+        navigate("/login")
+    }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[user, navigate])
   return (
     <div className="cart py-5">
       <div className="container px-lg-5">
         <h1 className="cart-title">
           Shopping Cart
         </h1>
-        {cart.length === 0 ? (
+        {user?.cart.length === 0 ? (
           <div className="alert alert-danger text-center my-5" role="alert">
             Your cart is empty!
           </div>
@@ -64,7 +70,7 @@ const CartSection = () => {
                   </tr>
                 </thead>
                 <tbody className="tbody">
-                  {cart.map((item) => (
+                  {user?.cart.map((item) => (
                     <tr key={item.id} className="tr">
                       <td className="cell">
                         <img src={item.img} alt={item.name} width="60px" />
@@ -124,7 +130,7 @@ const CartSection = () => {
                   Checkout
                 </button>
               </div>
-              <div className="grand"><span>Grand Price:</span> ${total}.00</div>
+              <div className="grand"><span>Grand Price:</span> ${total.toFixed(2)}</div>
             </div>
           </div>
         )}

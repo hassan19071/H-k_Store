@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import "./styling/wishlist.scss";
-import { removeFromWishlist, clearWishlist } from '../redux/data/WishlistSettings';
+import { removeFromWishlist, clearWishlist } from '../redux/data/userData';
+import { useNavigate } from 'react-router';
 
 const WishlistSection = () => {
   const dispatch = useDispatch();
-  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const user = useSelector((state) => state.user.currentUser);
+  let navigate = useNavigate();
 
   const handleRemoveFromWishlist = (product) => {
     dispatch(removeFromWishlist(product));
@@ -15,13 +17,19 @@ const WishlistSection = () => {
     dispatch(clearWishlist());
   };
 
+  useEffect(()=>{
+    if (!user){
+        navigate("/login")
+    }
+},[user, navigate])
+
   return (
     <div className="wishlist py-5">
       <div className="container px-lg-5">
         <h1 className="wishlist-title">
           Wishlist
         </h1>
-        {wishlist.length === 0 ? (
+        {user?.wishlist.length === 0 ? (
           <div className="alert alert-danger text-center my-5" role="alert">
             Your wishlist is empty!
           </div>
@@ -38,7 +46,7 @@ const WishlistSection = () => {
                   </tr>
                 </thead>
                 <tbody className="tbody">
-                  {wishlist.map((item) => (
+                  {user?.wishlist.map((item) => (
                     <tr key={item.id} className="tr">
                       <td className="cell">
                         <img src={item.img} alt={item.name} width="60px" />

@@ -1,10 +1,27 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import palceHolderImg from "../assets/images/placeholder.png";
+import { useSelector } from "react-redux";
 
-const Product = ({ img, id, text, price, name }) => {
+const Product = ({ img, id, text, price, name, handleAddToWishlist, handleAddToCart }) => {
+  const handleCart = (e)=>{
+    e.preventDefault();
+    handleAddToCart();
+  }
+  const handleWishlist = (e)=>{
+    e.preventDefault();
+    handleAddToWishlist();
+  }
+  let navigate = useNavigate();
+  let user = useSelector((state)=> state.user.currentUser);
+  let navigateToLogin = (e)=>{
+    if(!user){
+      e.preventDefault();
+      navigate("/login");
+    }
+  }
   return (
     <Link to={`/single-product/${id}`}>
       <div className="product">
@@ -28,7 +45,7 @@ const Product = ({ img, id, text, price, name }) => {
               className="price text-center mb-3"
               style={{ fontSize: "25px", fontWeight: "400" }}
             >
-              ${price}.00
+              ${price.toFixed(2)}
             </div>
             <div className="text-center">
               <button
@@ -36,6 +53,7 @@ const Product = ({ img, id, text, price, name }) => {
                 style={{
                   fontSize: "10px",
                 }}
+                onClick={user? handleCart : navigateToLogin}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +75,7 @@ const Product = ({ img, id, text, price, name }) => {
                     fontSize: "10px",
                 }}
                 className="btn btn-danger ms-3"
+                onClick={user? handleWishlist : navigateToLogin}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

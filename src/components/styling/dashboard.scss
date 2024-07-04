@@ -1,0 +1,104 @@
+.order-history{
+      .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    
+      .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+        border-collapse: collapse;
+    
+        .thead {
+          background-color: #f8f9fa;
+    
+          .header {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+          }
+        }
+    
+        .tbody {
+          .tr {
+            border: 1px solid #dee2e6;
+            .cell {
+              padding: 0.75rem;
+              vertical-align: middle;
+              text-align: start;
+            }
+            .quantity {
+              width: 35px;
+              display: inline-block;
+              text-align: center;
+              font-size: 14px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    
+      .infos {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+    
+      .btns {
+        .btn {
+          margin-right: 0.5rem;
+        }
+      }
+    
+      .grand {
+        font-size: 1.25rem;
+        font-weight: 700;
+        
+        span {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .table {
+        .thead {
+          display: none;
+        }
+    
+        .tbody {
+          .tr {
+            display: block;
+            margin-bottom: 0.625rem;
+    
+            .cell {
+              display: flex;
+              justify-content: space-between;
+              padding: 0.5rem;
+              border: none;
+              border-bottom: 1px solid #dee2e6;
+              position: relative;
+              text-align: right;
+    
+              &:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 0.5rem;
+                font-weight: 700;
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    form{
+        width:70%;
+        @media (max-width:991px) {
+            width: 100%;
+        }
+    }

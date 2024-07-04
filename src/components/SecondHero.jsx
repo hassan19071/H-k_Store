@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
-const SecondHero = () => {
+const SecondHero = ({title}) => {
   let {type} = useParams();
   return (
     <div className="second-hero">
@@ -11,7 +11,7 @@ const SecondHero = () => {
             <Link to={"/"} style={{fontWeight:"600",color:"#111"}}>Home</Link>
           </li>
           <li className="breadcrumb-item active mb-0" aria-current="page" style={{textTransform:"capitalize"}}>
-            {type}
+            {type || title}
           </li>
         </ol>
       </nav>
